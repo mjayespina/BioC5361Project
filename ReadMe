@@ -1,2 +1,64 @@
-Group Project: BioC 5361
-Authors: Mary Jane C. Espina, Claire
+BioC 5361 Group Project
+Topic: Plant vs Animal Diet
+Authors: Mary Jane C. Espina, Claire Peichel , and Sarah Lichtenberger
+Sources: Three links below were used in this project.
+
+	Publication: https://www.nature.com/articles/nature12820
+	
+	TaxaFile: https://knights-lab.github.io/MLRepo/datasets/david/gg/taxatable.txt
+	
+	Meta Data: https://knights-lab.github.io/MLRepo/datasets/david/mapping-orig.txt
+
+
+The topic that our group decided to work on is on plant vs animal diet. The main
+objective of this work was to recreate some of the figures in the publication by David,2014.
+
+Our group directly imported all the data sets from online so we don't need to set the
+directory and easily reproduce the pipeline. 
+
+Our first code is animal_plant_diet.R is compose of four code chunks as follows:
+
+	1. Data importing (chunk 1) -> mainly loading all the libraries needed to run the
+					pipeline and importing the data from online sources.
+					
+	2. Data processing (chunk 2)-> these chunk include the cleaning of the reads and
+					merging the main data and the metadata
+					
+	3. Alpha diversity (chunk 3)  -> calculating the alpha diversity, plotting it, and 
+					exporting the plot in pdf using ggsave
+					
+	4. Dendogram (chunk 4) -> subsetting the baseline and diet data, calculating Spearman
+					correlation, plotting the dendogram and exporting the plot into pdf
+					using base R.
+
+#### Data importing #####
+
+# Make sure you all the packages installed for the following libraries
+
+# Libraries
+library(tidyverse) # install.packages("tidyverse")--for data wrangling
+library(reshape2) # install.packages("reshape2")--to convert data from wide to long format
+library(ape) # install.packages("ape") -- to make hierarchal clustering
+library(vegan) # install.packages("vegan") -- for making alpha diversity
+library(ggplot2) # install.packages("ggplot2") -- to make plots
+library(dendextend) # install.pacakges ("dendoextend") --to make dendogram
+library(ggpubr) #install.packages ("ggpubr") -- to put together plots in one page
+
+# Import data --> Taxable from Green Genes Database
+Taxa <- read.delim("https://knights-lab.github.io/MLRepo/datasets/david/gg/taxatable.txt", header = TRUE, row.names = 1)
+dim(Taxa) #get the dimension of data
+glimpse(Taxa) #glimpse of the data set
+
+
+# Import original metadata from David 2014
+Meta <- read.delim("https://raw.githubusercontent.com/knights-lab/MLRepo/master/datasets/david/mapping-orig.txt", header = TRUE)
+
+# Subset only relevant information from the metadata
+Meta <-select(Meta, X.SampleID, SubjectFood, Diet, Day)
+	
+				
+					
+					
+					
+					
+	
