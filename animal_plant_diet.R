@@ -12,11 +12,12 @@
 # Libraries
 library(tidyverse) # install.packages("tidyverse")--for data wrangling
 library(reshape2) # install.packages("reshape2")--to convert data from wide to long format
-library(ape) # install.packages("ape") -- to make hierarchal clustering
 library(vegan) # install.packages("vegan") -- for making alpha diversity
 library(ggplot2) # install.packages("ggplot2") -- to make plots
-library(dendextend) # install.pacakges ("dendoextend") --to make dendogram
 library(ggpubr) #install.packages ("ggpubr") -- to put together plots in one page
+library(ape) # install.packages("ape") -- to make hierarchal clustering
+library(dendextend) # install.pacakges ("dendoextend") --to make dendogram
+
 
 # Import data --> Taxable from Green Genes Database
 Taxa <- read.delim("https://knights-lab.github.io/MLRepo/datasets/david/gg/taxatable.txt", header = TRUE, row.names = 1)
@@ -164,7 +165,7 @@ par(mfrow =c(2,1), oma=c(0.75,1,0.75,1)) # setting overall margins
 par(mar=c(4,2.5,1,7)) # plot margins
 
 # Baseline dendogram
-base %>% set("leaves_pch", 19) %>% #s et the leaf shape
+base %>% set("leaves_pch", 19) %>% #set the leaf shape
   set("leaves_cex", 1.2) %>% # set leaf size
   set("leaves_col",  value = c("purple", "purple", "purple", "purple",
                                "salmon","purple", "salmon","purple", 
